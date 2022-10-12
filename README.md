@@ -15,3 +15,9 @@
 
 2. Install protoc https://grpc.io/docs/protoc-installation/
 3. Follow step from https://grpc-ecosystem.github.io/grpc-gateway/docs/tutorials/introduction/
+
+## Update protobuf file
+Run this command
+```sh
+make generate
+```
