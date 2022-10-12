@@ -2,31 +2,17 @@ package main
 
 import (
 	"context"
+	"list-todo-ms/grpc/generated"
 	"log"
 	"net"
 	"net/http"
 
+	"list-todo-ms/handler"
+
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"google.golang.org/protobuf/types/known/emptypb"
-
-	handler "list-todo-ms/handler"
 )
-
-type server struct {
-	handler.UnimplementedListToDoServer
-}
-
-func NewServer() *server {
-	return &server{}
-}
-
-func (server) HealthCheck(context.Context, *emptypb.Empty) (*handler.HealthCheckResponse, error) {
-	return &handler.HealthCheckResponse{
-		Result: "service running",
-	}, nil
-}
 
 func main() {
 	// Create a listener on TCP port
@@ -37,8 +23,8 @@ func main() {
 
 	// Create a gRPC server object
 	s := grpc.NewServer()
-	// Attach the Greeter service to the server
-	handler.RegisterListToDoServer(s, &server{})
+	// Attach the List Todo service to the server
+	generated.RegisterListToDoServer(s, handler.NewHandler())
 	// Serve gRPC server
 	log.Println("Serving gRPC on 0.0.0.0:8080")
 	go func() {
@@ -58,8 +44,8 @@ func main() {
 	}
 
 	gwmux := runtime.NewServeMux()
-	// Register Greeter
-	err = handler.RegisterListToDoHandler(context.Background(), gwmux, conn)
+	// Register List Todo
+	err = generated.RegisterListToDoHandler(context.Background(), gwmux, conn)
 	if err != nil {
 		log.Fatalln("Failed to register gateway:", err)
 	}
