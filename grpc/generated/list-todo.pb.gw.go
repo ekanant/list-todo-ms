@@ -2,11 +2,11 @@
 // source: list-todo.proto
 
 /*
-Package __ is a reverse proxy.
+Package generated is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package __
+package generated
 
 import (
 	"context"
@@ -64,7 +64,7 @@ func RegisterListToDoHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/handler.ListToDo/HealthCheck", runtime.WithHTTPPathPattern("/v1/example/echo"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/grpc_generated.ListToDo/HealthCheck", runtime.WithHTTPPathPattern("/v1/example/echo"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -128,7 +128,7 @@ func RegisterListToDoHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/handler.ListToDo/HealthCheck", runtime.WithHTTPPathPattern("/v1/example/echo"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/grpc_generated.ListToDo/HealthCheck", runtime.WithHTTPPathPattern("/v1/example/echo"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return

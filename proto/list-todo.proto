@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package handler;
-option go_package = "./";
+package grpc_generated;
+option go_package = "grpc/generated";
 
 import "google/api/annotations.proto";
 import "google/protobuf/empty.proto";

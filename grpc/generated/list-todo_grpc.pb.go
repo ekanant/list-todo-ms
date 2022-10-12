@@ -4,7 +4,7 @@
 // - protoc             v3.12.4
 // source: list-todo.proto
 
-package __
+package generated
 
 import (
 	context "context"
@@ -36,7 +36,7 @@ func NewListToDoClient(cc grpc.ClientConnInterface) ListToDoClient {
 
 func (c *listToDoClient) HealthCheck(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
 	out := new(HealthCheckResponse)
-	err := c.cc.Invoke(ctx, "/handler.ListToDo/HealthCheck", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/grpc_generated.ListToDo/HealthCheck", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func _ListToDo_HealthCheck_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/handler.ListToDo/HealthCheck",
+		FullMethod: "/grpc_generated.ListToDo/HealthCheck",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ListToDoServer).HealthCheck(ctx, req.(*emptypb.Empty))
@@ -93,7 +93,7 @@ func _ListToDo_HealthCheck_Handler(srv interface{}, ctx context.Context, dec fun
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ListToDo_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "handler.ListToDo",
+	ServiceName: "grpc_generated.ListToDo",
 	HandlerType: (*ListToDoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
